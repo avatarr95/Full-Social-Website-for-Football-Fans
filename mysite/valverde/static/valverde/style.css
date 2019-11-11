@@ -75,6 +75,14 @@ body {
     margin-top: 10px;
 }
 
+.icon-user-plus:hover {
+    color: #DDCC00;
+}
+
+.icon-user:hover {
+    color: #DDCC00;
+}
+
 .menu {
     width: 1000px;
     background-color: #A70042;
@@ -107,4 +115,45 @@ body {
 
 }
 
+
+/* CONTENT ELEMENTS: main photo (last post)/ 2nd and 3rd / 2 most commented / */
+
+#content {
+    width: 100%;
+    height: 800px;
+    background-color: blue;
+   
+}
+
+#c3_last_and_2_top {
+    height: 400px;
+    width: 100%;
+    background-color: white;
+    
+}
+
+#main_photo {
+    width: 500px;
+    background-color: rebeccapurple;
+    height: 100%;
+    float: left;
+    
+}
+
+#c2nd_and_3rd {
+    height: 100%;
+    width: 250px;
+    
+    background-color: rgb(12, 59, 105);
+    float: left;
+}
+
+#c2_most_commented {
+    width: 250px;
+    height: 100%;
+    background-color: royalblue;
+    float: left;
+    
+
+}
 

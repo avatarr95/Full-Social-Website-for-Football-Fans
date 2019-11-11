@@ -9,18 +9,22 @@ import markdown
 
 register = template.Library()
 
-"""
-@register.inclusion_tag('strona/latest_posts.html')
-def show_latest_posts(count=5):
-    latest_posts =  Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).order_by("-publish")[:count]
-    return {'latest_posts': latest_posts}
+
+# @register.inclusion_tag('strona/latest_posts.html')
+# def show_latest_posts(count=5):
+#     latest_posts =  Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).order_by("-publish")[:count]
+#     return {'latest_posts': latest_posts}
 
 
 @register.simple_tag
-def get_last_posts(count=5):
-    return Post.objects.filter(status="published").order_by("-publish")[:5]
+def get_2nd_and_third_latest_posts(count=3):
+    return Post.objects.filter(status="published").order_by("-publish")[1:3]
 
+@register.simple_tag
+def get_last_post():
+    return Post.objects.filter(status="published").order_by("-publish")[0]
 
+"""
 @register.simple_tag
 def top_post():
     return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-comments")[0]
