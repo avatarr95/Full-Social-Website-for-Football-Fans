@@ -19,8 +19,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default="published")
     slug = models.SlugField(max_length=50)
-    
-
+    image = models.ImageField(upload_to="valverde/static/valverde/post_images")
     class Meta:
         ordering = ("-publish",)
 
