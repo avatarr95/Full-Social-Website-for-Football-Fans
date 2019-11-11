@@ -1,0 +1,110 @@
+/* quote font 
+    font-family: 'Lucida Grande';
+    font-style: italic;
+
+body {
+    background: url(../xxx.xxx);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+*/
+
+body {
+    background: url(../barcelona.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    color: white;
+}
+.wrapper {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.topbar {
+    padding: 10px;
+    height: 55px;
+    background-color: rgb(12, 59, 105); 
+    margin: 0;
+    color: #FFEE00; 
+    
+}
+
+.topbar a{
+    text-decoration: none;
+    color: #FFEE00; 
+}
+
+.left_container {
+    float: left;
+    width: 320px;
+    height: inherit;
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+}
+
+.left_container a {
+    text-decoration: none;
+    color: #FFEE00;
+    font-weight: bold;
+}
+
+
+.mid_container {
+    float: left;
+    width: 330px;
+    height: inherit;
+    margin: 0;
+    font-style: italic;
+    text-align: center
+    
+}
+
+.right_container {
+    float: left;
+    width: 328px;
+    height: inherit;
+    margin: 0;
+    text-align: right;
+    font-size: 30px;    
+}
+
+.icons {
+    margin-top: 10px;
+}
+
+.menu {
+    width: 1000px;
+    background-color: #A70042;
+    height: 45px;
+}
+
+.menu_element {
+    float: left;
+    text-align: center;
+    width: 25%;
+    height: 100%;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+
+}
+
+.menu_text {
+    display: block;
+    margin-top: 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+}
+
+.menu_element:hover {
+    background-color: rgb(134, 4, 56);
+
+}
+
+

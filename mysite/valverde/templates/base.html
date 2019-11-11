@@ -1,0 +1,44 @@
+<!doctype html>
+{% load static %}
+{% load valverde_tags %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'valverde/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> <!-- MONTSERRAT <3 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'valverde/fontello/css/fontello.css' %}"> <!-- helpful login icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'valverde/fontello2/css/fontello.css' %}">
+
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <div class="wrapper">
+        <div class="topbar">
+            <div class="left_container"><p class="valverde_out"><a href="{% url 'valverde:index' %}">ValverdeOut</a><p></div>
+            <div class="mid_container">It is what it is</div>
+            <div class="right_container">
+              {% if user.is_authenticated %}
+                <p class="icons"><a href="{% url 'logout' %}" title="logout"><i class="icon-logout-1"></i></a></p>
+              {% else %}
+                <p class="icons"><a href="{% url 'valverde:register' %}" title="register"><i class="icon-user-plus"></i></a><a href="{% url 'login' %}"><i class="icon-user" title="login"></i></a></p>
+              {% endif %}
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div class="menu">
+            
+            <div class="menu_element 1"><a href="{% url 'valverde:index' %}"><span class="menu_text">Home</span></a></div>
+            <div class="menu_element 2"><span class="menu_text">Add a post</span></div>
+            <div class="menu_element 3"><span class="menu_text"><a href="{% url 'valverde:contact' %}">Contact</a></span></div>
+            <div class="menu_element 4"><span class="menu_text">About</span></div>
+            <div style="clear: both;"></div> 
+            
+        </div>
+        <div class="ad"></div>
+
+        <div class="content">{% block content %}{% endblock content %}</div>
+    </div>
+    <div class="under_wrapper">{% block under %}{% endblock %}</div>
+  </body>
+</html>
