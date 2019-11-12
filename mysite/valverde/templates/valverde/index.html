@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load valverde_tags %}
+{% load static %}
 
 {% block content %}
 <div id="c3_last_and_2_top">
     <div id="main_photo">
         {% get_last_post as last_post %}
-            {{ post.image }}
-
+            <a href="{{ last_post.get_absolute_url }}" alt="{{ post.title }}"><img src="{{ last_post.image.url }}"></a>
+            <p>{{ last_post.image.url }}</p>            
+            
     </div>
     <div id="c2nd_and_3rd">
         <div class="first_photo"></div>

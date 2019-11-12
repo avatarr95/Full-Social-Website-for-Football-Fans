@@ -19,16 +19,19 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default="published")
     slug = models.SlugField(max_length=50)
-    image = models.ImageField(upload_to="valverde/static/valverde/post_images")
+    image = models.ImageField(upload_to="images/")
+
     class Meta:
         ordering = ("-publish",)
 
     def __str__(self):
         return self.title
 
+
+
     def get_absolute_url(self):
         #return reverse("strona:post_detail", args=[self.publish.year, self.publish.strftime("%m"), self.publish.strftime("%d"), self.slug])
-        return reverse("strona:post_detail", args=[self.pk, self.slug])
+        return reverse("valverde:post_detail", args=[self.pk, self.slug])
 
     def was_published_recently(self):
         return timezone.now() - datetime.timedelta(days=1) <= self.publish <= timezone.now()
