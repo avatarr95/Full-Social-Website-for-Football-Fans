@@ -16,13 +16,20 @@ register = template.Library()
 #     return {'latest_posts': latest_posts}
 
 
-@register.simple_tag
-def get_2nd_and_third_latest_posts(count=3):
-    return Post.objects.filter(status="published").order_by("-publish")[1:3]
 
 @register.simple_tag
 def get_last_post():
     return Post.objects.filter(status="published").order_by("-publish")[0]
+    
+@register.simple_tag
+def get_2nd_last_post():
+    return Post.objects.filter(status="published").order_by("-publish")[1]
+
+@register.simple_tag
+def get_3rd_last_post():
+    return Post.objects.filter(status="published").order_by("-publish")[2]
+
+
 
 """
 @register.simple_tag

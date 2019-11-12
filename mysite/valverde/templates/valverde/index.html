@@ -7,12 +7,20 @@
     <div id="main_photo">
         {% get_last_post as last_post %}
             <a href="{{ last_post.get_absolute_url }}" alt="{{ post.title }}"><img src="{{ last_post.image.url }}"></a>
-            <p>{{ last_post.image.url }}</p>            
+            <p class="dupa">{{ last_post.image.url }}</p>            
             
     </div>
     <div id="c2nd_and_3rd">
-        <div class="first_photo"></div>
-        <div class="second_photo"></div>
+        <div id="last_posts_text"><span id="last_p">LAST POSTS</span></div>
+        <div class="first_photo">
+            {% get_2nd_last_post as second_post %}
+                <a href="{{ second_post.get_absolute_url }}"><img src="{{ second_post.image.url }}"></a>
+        </div>
+            
+        <div class="second_photo">
+            {% get_3rd_last_post as third_post %}
+            <a href="{{ third_post.get_absolute_url }}"><img src="{{ third_post.image.url }}"></a>
+        </div>
     </div>
     <div id="c2_most_commented">
         <div class="first_most_commented"></div>
