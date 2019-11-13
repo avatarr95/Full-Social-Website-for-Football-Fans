@@ -33,9 +33,15 @@
     </div>
 
     <div id="c2_most_commented">
+    {% get_first_most_commented_post as most_commented_post %}
         <div id="most_commented_text"><span id="most_c">MOST COMMENTED</span></div>
-        <div class="first_most_commented"></div>
-        <div class="c2nd_most_commented"></div>
+        <div class="first_most_commented">
+            <a href="{{ first_most_commented_post.get_absolute_url }}"> <img src="{{ first_most_commented_post.image.url }}"></a>
+            <a href="{{ first_most_commented_post.get_absolute_url }}"> <div class="none"><h2>{{ first_most_commented_post.title|truncatewords:20 }}</h2></div></a>
+        </div>
+        <div class="c2nd_most_commented">
+            <a href="{{ second_most_commented_post.get_absolute_url }}"> <img src="{{ second_most_commented_post.image.url }}"></a>
+        </div>
     </div>
 
 </div>

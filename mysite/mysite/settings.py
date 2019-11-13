@@ -135,9 +135,9 @@ STATIC_URL = '/static/'
 #IMPORTANT URLS 
 
 
-LOGIN_REDIRECT_URL = "index"
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = "valverde:index"
+LOGIN_URL = 'valverde:login'
+LOGOUT_URL = 'valverde:logout'
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'

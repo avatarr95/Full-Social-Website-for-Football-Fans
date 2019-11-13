@@ -31,12 +31,18 @@ def get_3rd_last_post():
 
 
 
-"""
+
 @register.simple_tag
-def top_post():
+def get_first_most_commented_post():
     return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-comments")[0]
 
 
+@register.simple_tag
+def second_most_commented_post():
+    return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-comments")[1]
+
+
+"""
 @register.simple_tag
 def get_most_commented_posts(count=5):
     return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-comments")[1:count]
