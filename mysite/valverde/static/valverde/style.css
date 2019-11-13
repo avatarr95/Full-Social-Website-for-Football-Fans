@@ -137,6 +137,7 @@ body {
     height: 400px;
     border-right: 2px solid black;
     float: left;  
+    position: relative;
     
 }
 
@@ -146,10 +147,20 @@ body {
     position: absolute;
 }
 
-.dupa {
+.text_on_photo {
     position: absolute;
     text-align: justify;
+    bottom: 0;
+    left: 5px;
+    right: 5px;
+    color: white;
 }
+
+.text_on_photo:hover {
+    color: #FFEE00;
+}
+
+
 
 #c2nd_and_3rd {
     height: 100%;
