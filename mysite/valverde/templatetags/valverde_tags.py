@@ -31,7 +31,6 @@ def get_3rd_last_post():
 
 
 
-
 @register.simple_tag
 def get_first_most_commented_post():
     return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-comments")[0]

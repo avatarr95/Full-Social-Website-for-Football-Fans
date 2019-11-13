@@ -10,6 +10,11 @@ body {
 }
 */
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background: url(../barcelona.jpeg);
     background-repeat: no-repeat;
@@ -173,8 +178,9 @@ h1:hover, h2:hover {
 }
 
 #c2nd_and_3rd {
+    box-sizing: border-box;
     height: 100%;
-    width: 248px;
+    width: 250px;
     border-right: 2px solid black;
     float: left;
     position: relative;
@@ -199,36 +205,34 @@ h1:hover, h2:hover {
 
 #c2nd_and_3rd img {
     width: 248px;
-    height: 189px;
+    height: 190px;
+    margin: 0;
 }
 
-.firts_photo {
-    position: relative
+.first_photo {
+    height: 190px;
+    position: relative;
 }
 
 .text_on_1st {
     position: absolute;
-    bottom: 200px;
+    bottom: 7px;
     left: 5px;
     right: 5px;
 }
 
 .second_photo {
-    position: relative
+    height: 190px;
+    position: relative;
 }
 
 .text_on_2nd {
     position: absolute;
-    bottom: 5px;
+    bottom: 7px;
     left: 5px;
     right: 5px;
 }
-/*
 
-.text_on_2nd {
-    position: absolute;
-    bottom: 20px;
-} */
 
 #c2_most_commented {
     width: 250px;
