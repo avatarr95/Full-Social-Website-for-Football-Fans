@@ -5,37 +5,38 @@
 {% block content %}
 <div id="c3_last_and_2_top">
     {% get_last_post as last_post %}
-        <a href="{{ last_post.get_absolute_url }}" alt="{{ post.title }}">
-            <div id="main_photo">
-                <img src="{{ last_post.image.url }}">
-                <div class="text_on_photo"><h1>{{ last_post.title|truncatewords:20 }}</h1>
-            </div>
-        </a>           
+        
+    <div id="main_photo">
+        <a href="{{ last_post.get_absolute_url }}" alt="{{ post.title }}"><img src="{{ last_post.image.url }}"></a>
+        <a href="{{ last_post.get_absolute_url }}" alt="{{ post.title }}"><div class="text_on_photo"><h1>{{ last_post.title|truncatewords:20 }}</h1></a>
+    </div>
+                  
             
     </div>
     <div id="c2nd_and_3rd">
-        <div id="last_posts_text"><span id="last_p">LAST POSTS</span></div>
-
         {% get_2nd_last_post as second_post %}
         {% get_3rd_last_post as third_post %}
 
-        <a href="{{ second_post.get_absolute_url }}">
-            <div class="first_photo">
-                    <img src="{{ second_post.image.url }}">
-                    <div class="text_on_1st"><h2>{{ second_post.title|truncatewords:20 }}</h2>
-            </div>
-        </a>
-        <a href="{{ third_post.get_absolute_url }}">   
-            <div class="second_photo">               
-                <img src="{{ third_post.image.url }}">
-                <div class="text_on_2nd"><h2>{{ second_post.title|truncatewords:20 }}</h2>
-            </div>
-        </a>
+        <div id="last_posts_text"><span id="last_p">LAST POSTS</span></div>
+
+        <div class="first_photo">
+                <a href="{{ second_post.get_absolute_url }}"><img src="{{ second_post.image.url }}"></a>
+                <a href="{{ second_post.get_absolute_url }}"><div class="text_on_1st"><h2>{{ second_post.title|truncatewords:20 }}</h2></div></a>
+        </div>
+
+          
+        <div class="second_photo">               
+            <a href="{{ third_post.get_absolute_url }}"> <img src="{{ third_post.image.url }}"></a>
+            <a href="{{ third_post.get_absolute_url }}"> <div class="text_on_2nd"><h2>{{ third_post.title|truncatewords:20 }}</h2></div></a>
+        </div>
+        
     </div>
+
     <div id="c2_most_commented">
         <div id="most_commented_text"><span id="most_c">MOST COMMENTED</span></div>
         <div class="first_most_commented"></div>
         <div class="c2nd_most_commented"></div>
     </div>
+
 </div>
 {% endblock content %}

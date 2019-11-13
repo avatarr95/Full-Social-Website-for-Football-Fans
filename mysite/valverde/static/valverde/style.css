@@ -17,6 +17,11 @@ body {
     background-attachment: fixed;
     color: white;
 }
+
+h1, h2 {
+    margin: 0;
+    color: white;
+}
 .wrapper {
     width: 1000px;
     margin-left: auto;
@@ -141,6 +146,11 @@ body {
     
 }
 
+#main_photo a {
+    text-decoration: none;
+    color: white;
+}
+
 #main_photo img {
     width: 498px;
     height: 400px;
@@ -167,7 +177,10 @@ body {
     width: 248px;
     border-right: 2px solid black;
     float: left;
+    position: relative;
 }
+
+
 
 #last_posts_text {
     background-color: rgb(12, 59, 105);
@@ -176,22 +189,53 @@ body {
     height: 20px;
 }
 
+
 #last_p {
 
     margin-top: 2px;
 }
 
+/* OK */
+
 #c2nd_and_3rd img {
-    width: 100%;
+    width: 248px;
     height: 189px;
 }
 
+.firts_photo {
+    position: relative
+}
+
+.text_on_1st {
+    position: absolute;
+    bottom: 200px;
+    left: 5px;
+    right: 5px;
+}
+
+.second_photo {
+    position: relative
+}
+
+.text_on_2nd {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+}
+/*
+
+.text_on_2nd {
+    position: absolute;
+    bottom: 20px;
+} */
 
 #c2_most_commented {
     width: 250px;
     height: 100%;
     background-image: inherit;
     float: left;
+    position: relative;
     
 }
 
