@@ -146,6 +146,7 @@ h1:hover, h2:hover {
     height: 400px;
     width: 100%;
     background-color: black;
+    border-bottom: 1px solid gray;
     
 }
 
@@ -156,6 +157,10 @@ h1:hover, h2:hover {
     float: left;  
     position: relative;
     
+}
+
+#c3_last_and_2_top img:hover {
+    opacity: 0.8;    
 }
 
 #main_photo a {
@@ -294,3 +299,21 @@ h1:hover, h2:hover {
 }
 
 /* end of 2 most commented posts */
+
+
+#last20_on_the_left_and_ads_on_the_right {
+    width: 980px;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+#last_20_on_the_left {
+    width: 75%;
+    background-color: cadetblue;
+}
+
+#last_20_on_the_left img {
+    width: 200px;
+    height: 125px;
+    float: left;
+}

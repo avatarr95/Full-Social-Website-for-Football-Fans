@@ -47,14 +47,24 @@
             <a href="{{ second_most_commented_post.get_absolute_url }}"> <img src="{{ second_most_commented_post.image.url }}"></a>
             <a href="{{ second_most_commented_post.get_absolute_url }}"> <div class="text_on_2nd_most_commented"><h2>{{ second_most_commented_post.title|truncatewords:20 }}</h2></div></a>
         </div>
-    </div>
-    <div>
-        {% most_commented_posts as posts %}
-        {% for post in posts %}
-        <h2>{{ post.title }}</h2> {{ post.comments.count }}
-        {% endfor %}
+    <div style="clear: both;"></div>    
     </div>
 
+
+</div>
+<div id="ad2"></div>
+<div id="last20_on_the_left_and_ads_on_the_right">
+    <div id="last_20_on_the_left">
+        {% get_4_to_24_last_posts as remained_last_posts %}
+            {% for post in remained_last_posts %}
+                <img src="{{ post.image.url }}">
+                <h2>{{ post.title }}</h2>
+                <i>{{ post.publish }} by {{ post.author }}</i><br>
+                <hr>
+            {% endfor %}
+
+    </div>
+    <div id="ads_on_the_right"></div>
 </div>
 
 {% comment %} <div class="test">
