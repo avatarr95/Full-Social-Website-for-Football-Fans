@@ -29,14 +29,15 @@ h1, h2 {
     
 }
 
-h1:hover, h2:hover {
+/* h1:hover, h2:hover {
     color: #FFEE00;
-}
+} */
 
 .wrapper {
     width: 1000px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
 }
 
 .topbar {
@@ -132,9 +133,9 @@ h1:hover, h2:hover {
 }
 
 
-/* CONTENT ELEMENTS: main photo (last post)/ 2nd and 3rd last posts / 2 most commented posts  */
 
-/* MAIN PHOTO (LAST POST) */
+
+
 #content {
     width: 100%;
     height: 800px;
@@ -150,6 +151,9 @@ h1:hover, h2:hover {
     
 }
 
+/* CONTENT ELEMENTS: main photo (last post)/ 2nd and 3rd last posts / 2 most commented posts  */
+/* MAIN PHOTO (LAST POST) */
+
 #main_photo {
     width: 498px;
     height: 400px;
@@ -159,14 +163,14 @@ h1:hover, h2:hover {
     
 }
 
-#c3_last_and_2_top img:hover {
-    opacity: 0.8;    
-}
+#main_photo:hover img {opacity: 0.8;}
+#main_photo:hover h1 {color: #FFEE00;}
 
-#main_photo a {
-    text-decoration: none;
-    color: white;
-}
+
+/* #c3_last_and_2_top img:hover {
+    opacity: 0.8;    
+} */
+
 
 #main_photo img {
     width: 498px;
@@ -197,6 +201,12 @@ h1:hover, h2:hover {
     position: relative;
 }
 
+.first_photo:hover img {opacity: 0.8}
+.first_photo:hover h2 {color: #FFEE00}
+
+
+.second_photo:hover img {opacity: 0.8}
+.second_photo:hover h2 {color: #FFEE00}
 
 
 #last_posts_text {
@@ -279,6 +289,16 @@ h1:hover, h2:hover {
     position: relative;
 }
 
+
+.c1st_most_commented:hover h2 {color: #FFEE00;}
+.c1st_most_commented:hover img {opacity: 0.8}
+
+.c2nd_most_commented:hover h2 {color: #FFEE00;}
+.c2nd_most_commented:hover img {opacity: 0.8}
+
+
+
+
 .text_on_1st_most_commented {
     position: absolute;
     bottom: 7px;
@@ -305,15 +325,40 @@ h1:hover, h2:hover {
     width: 980px;
     background-color: lightgray;
     padding: 10px;
+    color: black;
+}
+
+#last20_on_the_left_and_ads_on_the_right h2 {
+    color: black;
 }
 
 #last_20_on_the_left {
     width: 75%;
-    background-color: cadetblue;
+    background-color: lightgray;
 }
 
 #last_20_on_the_left img {
     width: 200px;
     height: 125px;
+
+}
+
+
+.article {
+    color: black;
+    text-align: justify;
+    line-height: 1.5em;
+}
+
+.article:hover {background-color: rgb(197, 195, 195);}
+.article:hover h2 {color: yellow; text-decoration: underline;}
+
+
+.post_image {
     float: left;
+}
+
+.post_data {
+    float: left;
+    padding: 5px;
 }
