@@ -132,19 +132,20 @@ h1:hover, h2:hover {
 }
 
 
-/* CONTENT ELEMENTS: main photo (last post)/ 2nd and 3rd / 2 most commented / */
+/* CONTENT ELEMENTS: main photo (last post)/ 2nd and 3rd last posts / 2 most commented posts  */
 
+/* MAIN PHOTO (LAST POST) */
 #content {
     width: 100%;
     height: 800px;
-    background-color: blue;
+    background-color: burlywood;
    
 }
 
 #c3_last_and_2_top {
     height: 400px;
     width: 100%;
-    background-color: white;
+    background-color: black;
     
 }
 
@@ -177,6 +178,11 @@ h1:hover, h2:hover {
     color: white;
 }
 
+/* End of main post */
+
+/* SECOND AND THIRD OF LAST POSTS*/
+
+
 #c2nd_and_3rd {
     box-sizing: border-box;
     height: 100%;
@@ -201,7 +207,6 @@ h1:hover, h2:hover {
     margin-top: 2px;
 }
 
-/* OK */
 
 #c2nd_and_3rd img {
     width: 248px;
@@ -233,14 +238,23 @@ h1:hover, h2:hover {
     right: 5px;
 }
 
+/* end of second and third last posts */
+
+/* 2 MOST COMMENTED POSTS */
+
 
 #c2_most_commented {
     width: 250px;
     height: 100%;
-    background-image: inherit;
     float: left;
     position: relative;
     
+}
+
+#c2_most_commented img {
+    width: 250px;
+    height: 190px;
+    margin: 0;
 }
 
 #most_commented_text {
@@ -255,3 +269,28 @@ h1:hover, h2:hover {
 
 }
 
+.c1st_most_commented {
+    height: 190px;
+    position: relative;
+}
+
+.text_on_1st_most_commented {
+    position: absolute;
+    bottom: 7px;
+    left: 5px;
+    right: 5px;
+}
+
+.c2nd_most_commented {
+    height: 190px;
+    position: relative;
+}
+
+.text_on_2nd_most_commented {
+    position: absolute;
+    bottom: 7px;
+    left: 5px;
+    right: 5px;
+}
+
+/* end of 2 most commented posts */
