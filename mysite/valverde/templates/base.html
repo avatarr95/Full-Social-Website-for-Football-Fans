@@ -6,7 +6,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{% static 'valverde/style.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> <!-- MONTSERRAT <3 -->
     <link rel="stylesheet" type="text/css" href="{% static 'valverde/fontello/css/fontello.css' %}"> <!-- helpful login icons -->
     <link rel="stylesheet" type="text/css" href="{% static 'valverde/fontello2/css/fontello.css' %}">
 
@@ -15,8 +14,11 @@
   <body>
     <div class="wrapper">
         <div class="topbar">
-            <div class="left_container"><p class="valverde_out"><a href="{% url 'valverde:index' %}">ValverdeOut</a><p></div>
-            <div class="mid_container">It is what it is</div>
+            <a href="{% url 'valverde:index' %}">
+            <div class="left_container"><img style="float: left;" width="120px" height="60px" src="{% static 'edziu1.png' %}"><p class="valverde_out">ValverdeOut<p></div>
+            </a>
+            
+            <div class="mid_container"> "It is what it is..."</div>
             <div class="right_container">
               {% if user.is_authenticated %}
                 <p class="icons"><a href="{% url 'logout' %}" title="logout"><i class="icon-logout-1"></i></a></p>
