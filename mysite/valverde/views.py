@@ -14,6 +14,7 @@ class IndexView(generic.ListView):
 
 def post_detail(request, pk, post):
     post = get_object_or_404(Post, status="published", pk=pk, slug=post)
+    comments = post.comments.filter(active=True)
 
     if request.method == "POST":
         comment_form = CommentForm(request.POST)
@@ -26,7 +27,7 @@ def post_detail(request, pk, post):
     else:
         comment_form = CommentForm()
 
-    return render(request, 'valverde/post_detail.html', {'post': post, 'comment_form': comment_form})
+    return render(request, 'valverde/post_detail.html', {'post': post, 'comment_form': comment_form, 'comments': comments})
 
 
 

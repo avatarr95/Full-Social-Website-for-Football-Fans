@@ -9,15 +9,42 @@
         
         <div id="post_detail">
             <h1>{{ post.title }}</h1>
-            <i> {{ post.publish }} by {{ post.author }}
+            <i> {{ post.publish }} by {{ post.author }} </i>
             <hr><br>
-            <p>{{ post.body }}</p>
+            <p>{{ post.body }}</p><br>
+            <div id="comments">
+                <h2>COMMENTS</h2>
+                <div class="comment">
+                    {% for comment in comments %}
+                        <i>Commented by {{ comment.author }}, {{ comment.created }}</i>
+                        <p>{{ comment.body }}</p>
+                        <hr>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            {% if user.is_authenticated %}
+                {% if new_message %}
+                    <p>Your comment has been succesfully added</p>
+
+                {% else %}
+                    <form action='.' method="post">
+                        {{ comment_form.as_p }}
+                        {% csrf_token %}
+                        <input type="submit" value="Add a comment">
+                    </form>
+                {% endif %}
+            {% else %}
+            <i> Please <a href="{% url 'login' %}">log in</a> to add a comment </i>
+            {% endif %}
+
         </div>
     
     </div>
 
     <div id="post_detail_ads">
-    
+        <div id="fs-upcoming"></div> <script> (function (w,d,s,o,f,js,fjs) { w['fsUpcomingEmbed']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) }; js = d.createElement(s), fjs = d.getElementsByTagName(s)[0]; js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs); }(window, document, 'script', 'fsUpcoming', 'https://cdn.footystats.org/embeds/upcoming.js')); fsUpcoming('params', { teamID: 83 }); </script>
     </div>
 </div>
 
