@@ -2,7 +2,23 @@
 {% load static %}
 
 {% block content %}
-<h1>{{ post.title }}</h1>
-<img src="{{ post.image.url }}">
+
+<div id="post_detail_and_ads">
+    <div id="post_detail_and_post_photo">
+        <div id="post_photo"><img width="750" height="470" src="{{ post.image.url }}"></div>
+        
+        <div id="post_detail">
+            <h1>{{ post.title }}</h1>
+            <i> {{ post.publish }} by {{ post.author }}
+            <hr><br>
+            <p>{{ post.body }}</p>
+        </div>
+    
+    </div>
+
+    <div id="post_detail_ads">
+    
+    </div>
+</div>
 
 {% endblock %}
