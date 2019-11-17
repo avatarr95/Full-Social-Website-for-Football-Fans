@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load valverde_tags %}
 
 {% block content %}
 
@@ -9,19 +10,21 @@
         
         <div id="post_detail">
             <h1>{{ post.title }}</h1>
-            <i> {{ post.publish }} by {{ post.author }} </i>
+            <i> Created by {{ post.author }} on {{ post.publish }} </i>
             <hr><br>
-            <p>{{ post.body }}</p><br>
-            <div id="comments">
-                <h2>COMMENTS</h2>
-                <div class="comment">
-                    {% for comment in comments %}
-                        <i>Commented by {{ comment.author }}, {{ comment.created }}</i>
-                        <p>{{ comment.body }}</p>
-                        <hr>
-                    {% endfor %}
-                </div>
+            <p>{{ post.body|markdown}}</p><br>
+        </div>
+        <div id="comments">
+            <h2>COMMENTS</h2>
+            {% for comment in comments %}
+            <div class="comment">
+                
+                    <h3>{{ comment.author }}</h3><i>&nbsp; &nbsp;{{ comment.created }}</i>
+                    <p>{{ comment.body }}</p>
+                
             </div>
+            {% endfor %}
+        </div>
 
 
             {% if user.is_authenticated %}
@@ -39,7 +42,7 @@
             <i> Please <a href="{% url 'login' %}">log in</a> to add a comment </i>
             {% endif %}
 
-        </div>
+        
     
     </div>
 

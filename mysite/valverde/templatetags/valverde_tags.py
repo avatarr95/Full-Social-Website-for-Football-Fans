@@ -58,11 +58,9 @@ def most_commented_posts(count=5):
 
 
 
-"""
 
-# markdown używamy, gdy jesteśmy pewni, że kod jest bezpieczny... lepiej nie ufać nikomu
-# @register.filter(name="markdown")
-# def markdown_format(text):
-#     return mark_safe(markdown.markdown(text))
 
-"""
+#markdown używamy, gdy jesteśmy pewni, że kod jest bezpieczny... lepiej nie ufać nikomu
+@register.filter(name="markdown")
+def markdown_format(text):
+    return mark_safe(markdown.markdown(text))

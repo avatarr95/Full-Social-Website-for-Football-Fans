@@ -2,6 +2,8 @@
 {% load valverde_tags %}
 {% load static %}
 
+{% block title %}FC Barcelona community website{% endblock %}
+
 {% block content %}
 <div id="c3_last_and_2_top">
     {% get_last_post as last_post %}
@@ -61,11 +63,10 @@
             <div class="text_on_2nd_most_commented"><h2>{{ second_most_commented_post.title|truncatewords:20 }}</h2></div>
         </div>
         </a>
-    <div style="clear: both;"></div>    
+        <div style="clear: both;"></div>    
     </div>
-
-
 </div>
+<div id="separating_div"> </div>
 <div id="ad2"></div>
 <div id="last20_on_the_left_and_ads_on_the_right">
     <div id="last_20_on_the_left">
