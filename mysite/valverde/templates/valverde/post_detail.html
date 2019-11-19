@@ -14,19 +14,11 @@
             <hr><br>
             <p>{{ post.body|markdown}}</p><br>
         </div>
+
         <div id="comments">
+            
             <h2>COMMENTS</h2>
-            {% for comment in comments %}
-            <div class="comment">
-                
-                    <h3>{{ comment.author }}</h3><i>&nbsp; &nbsp;{{ comment.created }}</i>
-                    <p>{{ comment.body }}</p>
-                
-            </div>
-            {% endfor %}
-        </div>
-
-
+            <div class="add_comment">
             {% if user.is_authenticated %}
                 {% if new_message %}
                     <p>Your comment has been succesfully added</p>
@@ -41,8 +33,17 @@
             {% else %}
             <i> Please <a href="{% url 'login' %}">log in</a> to add a comment </i>
             {% endif %}
+            </div>
 
-        
+            {% for comment in comments %}
+            <div class="comment">
+                
+                    <h3>{{ comment.author }}</h3><i>&nbsp; &nbsp;{{ comment.created }}</i>
+                    <p>{{ comment.body }}</p>
+                
+            </div>
+            {% endfor %}
+        </div>     
     
     </div>
 

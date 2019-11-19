@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 import markdown
 
 
+
 register = template.Library()
 
 
@@ -40,12 +41,22 @@ def get_4_to_24_last_posts():
 
 @register.simple_tag
 def get_first_most_commented_post():
-    return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-comments")[0]
-
+    most_commented_post = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-total_comments").first()
+    most_commented_post_from_last_week = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=7)).annotate(total_comments=Count("comments")).order_by("-total_comments").first()
+    if most_commented_post:
+        return most_commented_post
+    else:
+        return most_commented_post_from_last_week
 
 @register.simple_tag
 def get_second_most_commented_post():
-    return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-comments")[1]
+    most_commented_posts = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-total_comments")
+    most_commented_posts_from_last_week = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=7)).annotate(total_comments=Count("comments")).order_by("-total_comments")
+    if most_commented_posts:
+        return most_commented_posts[1]
+    else:
+        return most_commented_posts_from_last_week[1]
+    
 
 
 

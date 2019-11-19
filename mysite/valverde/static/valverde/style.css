@@ -482,9 +482,88 @@ h1, h2 {
     width: 240px;
     padding: 0px 5px;
     float: left;
-
 }
 
 #post_detail_ads h2 {
     color: black;
+}
+
+
+.add_comment {
+    padding-bottom: 10px;
+}
+.add_comment a {
+    color: white;
+    text-decoration: underline;
+}
+
+.add_comment a:hover {
+    color: #FFEE00;
+}
+
+.add_comment form {
+    margin-left: 175px;
+}
+
+
+
+input[type=submit] {
+    font-weight:bold;
+    background:#FFEE00;
+    color:black;
+    padding:10px 20px;
+    font-size:14px;
+    margin-left: 110px;
+
+}
+
+
+input, textarea {
+    clear:both;
+    margin-right: 50px;
+    margin:0 0 10px;
+    background:#efefef;
+    border:0;
+    padding:6px 10px;
+    font-size:14px;
+}
+
+/* .add_comment input[type=submit], button{
+    margin-left: 200px;
+
+} */
+
+
+.registration_form {
+    width: 500px;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.registration_form form {
+    text-align: right;
+    margin-right: 150px;
+    
+}
+
+.registration_form h2 {
+    color: white;
+}
+
+.registration_form input[type=submit] {
+    margin-right: 60px;
+}
+
+.forgot_password {
+    text-align: center;
+}
+
+.errorlist {
+    text-align: left;
+}
+
+.helptext {
+    display: none;
 }

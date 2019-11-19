@@ -4,12 +4,13 @@
 
 {% block content %}
     
-        
-    <p> Wypełnij ponizszy formularz, aby sie zarejestrować </p>
+    <div class="registration_form">   
+    <h2> New account </h2><br>
     <form action='.' method="post">
         {{ user_form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Create an account"></p>
+        <p><input type="submit" value="Create an account" style="margin-right: 20px;"></p>
     </form>
+    </div>
       
 {% endblock content %}

@@ -3,23 +3,22 @@
 {% block title %}Logowanie{% endblock title %}
 
 {% block content %}
-<h1>Logowanie</h1>
-{% if form.errors %}
-    <p> 
-    Nazwa użytkownika lub hasło są nieprawidłowe. Spróbuj ponownie.
-    </p>
-{% else %}
-    <p> Wypełnij poniższy formularz, aby się zalogować </p>
 
-{% endif %}
+<div class="registration_form">
+    {% if form.errors %}
+        <p > 
+        Sorry, you’ve entered an invalid username or password.
+        </p>
+    {% else %}
+        <h2> Login </h2><br>
 
-<div class="login_form">
+    {% endif %}
     <form action="{% url 'login' %}" method="post">
         {{ form.as_p }}
         {% csrf_token %}
         <input type="hidden" name="next" value ="{{ next }}" />
-        <p><input type="submit" value="Zaloguj"></p>
+        <p><input type="submit" value="Log in"></p>
     </form>
-    <p><a href="{% url 'password_reset' %}">Zapomniałeś hasła? </p>
+    <p class="forgot_password"><a href="{% url 'password_reset' %}">Forgot your password? </p>
 </div>
 {% endblock content %}
