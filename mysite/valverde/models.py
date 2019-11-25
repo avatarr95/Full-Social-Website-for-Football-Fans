@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
 import datetime
+from django.conf import settings
 
 # Create your models here.
 
@@ -11,7 +12,7 @@ class Post(models.Model):
         ("draft", "Draft"),
         ("published", "Published")
     )
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     body = models.TextField()
     publish = models.DateTimeField(default=timezone.now())
@@ -20,6 +21,7 @@ class Post(models.Model):
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default="published")
     slug = models.SlugField(max_length=50)
     image = models.ImageField(upload_to="images/")
+    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="posts_liked", blank=True)
 
     class Meta:
         ordering = ("-publish",)
