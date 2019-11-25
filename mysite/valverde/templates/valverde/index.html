@@ -59,10 +59,11 @@
 
         <a href="{{ second_most_commented_post.get_absolute_url }}"> 
         <div class="c2nd_most_commented">
-            <img src="{{ second_most_commented_post.image.url }}"></a>
+            <img src="{{ second_most_commented_post.image.url }}">
             <div class="text_on_2nd_most_commented"><h2>{{ second_most_commented_post.title|truncatewords:20 }}</h2></div>
         </div>
         </a>
+
         <div style="clear: both;"></div>    
     </div>
 </div>

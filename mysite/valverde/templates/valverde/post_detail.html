@@ -22,9 +22,9 @@
                     </span>
                     <a href="#" data-id="{{ post.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button">
                     {% if request.user not in users_like %}
-                        Lubię
+                        Like
                     {% else %}
-                        Nie lubię
+                        Unlike
                     {% endif %}
                     </a>
                 </div>
@@ -37,7 +37,7 @@
                     <p>{{ user.first_name }}</p>
                     </div>
                 {% empty %}
-                    Nikt jeszcze nie polubił obrazu.
+                    No one has liked this post yet
                 {% endfor %}
                 </div>
             {% endwith %}
@@ -98,7 +98,7 @@
           // toggle data-action
           $('a.like').data('action', previous_action == 'like' ? 'unlike' : 'like');
           // toggle link text
-          $('a.like').text(previous_action == 'like' ? 'Nie lubię' : 'Lubię');
+          $('a.like').text(previous_action == 'like' ? 'Like' : 'Unlike');
 
           // update total likes
           var previous_likes = parseInt($('span.count .total').text());
