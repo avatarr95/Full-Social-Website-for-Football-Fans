@@ -416,8 +416,7 @@ h1, h2 {
     padding: 10px;
     font-family: "Lato", 'Helvetica', sans-serif;
     color: black;
-    
-    
+    text-overflow: inherit;
 }
 
 #post_detail i {

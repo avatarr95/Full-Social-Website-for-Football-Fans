@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Post, Comment
-from .forms import CommentForm, RegisterForm
+from .forms import CommentForm, RegisterForm, NewPostForm
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
@@ -68,3 +68,18 @@ def post_like(request):
         except:
             pass
     return JsonResponse({'status':'ok'})
+
+
+def add_a_new_post(request):
+    if request.method == "POST":
+        form = NewPostForm(request.POST)
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.status = "draft"
+            new_post.save()
+            return HttpResponseRedirect(request.path)
+    else:
+        form = NewPostForm()
+
+    return render(request, 'valverde/add_a_post.html', {'form': form})

@@ -12,7 +12,7 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = { "slug": ("title",)}
     date_hierarchy = "publish"
     raw_id_fields = ('author',)
-    ordering = ('publish', 'status')
+    ordering = ('-publish', 'status')
 
 
 @admin.register(Comment)

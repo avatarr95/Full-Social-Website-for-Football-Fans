@@ -9,5 +9,6 @@ urlpatterns = [
     path("contact/", views.contact, name='contact'),    
     path("register/", views.register, name="register"),
     path('like/', views.post_like, name='like'),
+    path('new-post/', views.add_a_new_post, name="add_post")
 ]
 

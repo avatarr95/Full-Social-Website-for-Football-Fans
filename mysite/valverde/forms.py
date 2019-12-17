@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+from .models import Comment, Post
 from django.contrib.auth.models import User
 
 class CommentForm(forms.ModelForm):
@@ -30,3 +30,8 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError('Passwords do not match')
         return cd['password2']
 
+
+class NewPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'body')

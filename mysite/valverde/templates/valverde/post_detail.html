@@ -12,7 +12,7 @@
             <h1>{{ post.title }}</h1>
             <i> Created by {{ post.author }} on {{ post.publish }} </i>
             <hr><br>
-            <p>{{ post.body|markdown}}</p><br>
+            <p id="post_detail_content">{{ post.body|safe }}</p><br>
              {% with total_likes=post.users_like.count users_like=post.users_like.all %}
                 <div class="post-info">
                 <div>

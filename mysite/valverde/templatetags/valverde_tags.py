@@ -54,13 +54,14 @@ def get_first_most_commented_post():
 
 @register.simple_tag
 def get_second_most_commented_post():
+    
     most_commented_posts = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-total_comments")
     most_commented_posts_from_last_week = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=7)).annotate(total_comments=Count("comments")).order_by("-total_comments")
     most_commented_posts_from_last_month = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=30)).annotate(total_comments=Count("comments")).order_by("-total_comments")
-    if most_commented_posts:
+    if len(most_commented_posts) > 1:
         return most_commented_posts[1]
     else:
-        if most_commented_posts_from_last_week:
+        if len(most_commented_posts_from_last_week) > 1:
             return most_commented_posts_from_last_week[1]
         else: 
             return most_commented_posts_from_last_month[1]

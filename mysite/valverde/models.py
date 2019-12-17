@@ -5,6 +5,7 @@ from django.urls import reverse
 import datetime
 from django.conf import settings
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -30,14 +31,17 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-
-
     def get_absolute_url(self):
         #return reverse("strona:post_detail", args=[self.publish.year, self.publish.strftime("%m"), self.publish.strftime("%d"), self.slug])
         return reverse("valverde:post_detail", args=[self.pk, self.slug])
 
     def was_published_recently(self):
         return timezone.now() - datetime.timedelta(days=1) <= self.publish <= timezone.now()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
