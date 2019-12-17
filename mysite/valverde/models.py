@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.urls import reverse
 import datetime
 from django.conf import settings
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -14,14 +15,14 @@ class Post(models.Model):
     )
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    body = models.TextField()
+    body = RichTextField()
     publish = models.DateTimeField(default=timezone.now())
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default="published")
     slug = models.SlugField(max_length=50)
     image = models.ImageField(upload_to="images/")
-    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="posts_liked", blank=True)
+    # users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="posts_liked", blank=True)
 
     class Meta:
         ordering = ("-publish",)
@@ -45,6 +46,7 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     udpated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
+    # users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="comments_liked", blank=True)
 
     class Meta:
         ordering = ('-created',)

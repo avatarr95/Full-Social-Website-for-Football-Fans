@@ -43,20 +43,27 @@ def get_4_to_24_last_posts():
 def get_first_most_commented_post():
     most_commented_post = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-total_comments").first()
     most_commented_post_from_last_week = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=7)).annotate(total_comments=Count("comments")).order_by("-total_comments").first()
+    most_commented_post_from_last_month = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=30)).annotate(total_comments=Count("comments")).order_by("-total_comments").first()
     if most_commented_post:
         return most_commented_post
     else:
-        return most_commented_post_from_last_week
+        if most_commented_post_from_last_week:
+            return most_commented_post_from_last_week
+        else:
+            return most_commented_post_from_last_month
 
 @register.simple_tag
 def get_second_most_commented_post():
     most_commented_posts = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-total_comments")
     most_commented_posts_from_last_week = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=7)).annotate(total_comments=Count("comments")).order_by("-total_comments")
+    most_commented_posts_from_last_month = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=30)).annotate(total_comments=Count("comments")).order_by("-total_comments")
     if most_commented_posts:
         return most_commented_posts[1]
     else:
-        return most_commented_posts_from_last_week[1]
-    
+        if most_commented_posts_from_last_week:
+            return most_commented_posts_from_last_week[1]
+        else: 
+            return most_commented_posts_from_last_month[1]
 
 
 
