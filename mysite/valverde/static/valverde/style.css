@@ -417,6 +417,8 @@ h1, h2 {
     font-family: "Lato", 'Helvetica', sans-serif;
     color: black;
     text-overflow: inherit;
+    word-wrap: break-word;
+    /* white-space: initial; */
 }
 
 #post_detail i {
@@ -426,6 +428,8 @@ h1, h2 {
 #post_detail p {
     font-size: 1em;
     line-height: 1.5em;
+    /* word-wrap: break-word;
+    white-space: initial; */
 }
 
 #post_photo {
