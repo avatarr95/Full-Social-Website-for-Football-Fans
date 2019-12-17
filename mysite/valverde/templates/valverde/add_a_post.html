@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<form action="." method="post">
+<form action="." method="post" style="text-align: center; margin-top: 20px;">
     {% csrf_token %}
     {{ form.media }}
     {{ form.as_p }}
-    <input type="submit" value="Submit a new post">
+    <input type="submit" value="Submit a new post" style="margin-left: auto; margin-right: auto;">
 
 </form>
 {% endblock %}

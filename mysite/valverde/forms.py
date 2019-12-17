@@ -35,3 +35,7 @@ class NewPostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'body')
+
+    def __init__(self, *args, **kwargs):
+        super(NewPostForm, self).__init__(*args, **kwargs)
+        self.fields['body'].label = ""
