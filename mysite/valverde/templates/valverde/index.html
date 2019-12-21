@@ -11,13 +11,13 @@
     <a href="{{ last_post.get_absolute_url }}">
     <div id="main_photo">
         <img src="{{ last_post.image.url }}">
-        <a href="{{ last_post.get_absolute_url }}"><div class="text_on_photo"><h1>{{ last_post.title|truncatewords:20 }}</h1>
+        <a href="{{ last_post.get_absolute_url }}"><div class="text_on_photo"><h1>{{ last_post.title|truncatewords:20|title }}</h1>
     </div>
     </a>
         
     {% comment %} <div id="main_photo">
         <a href="{{ last_post.get_absolute_url }}" alt="{{ post.title }}"><img src="{{ last_post.image.url }}"></a>
-        <a href="{{ last_post.get_absolute_url }}" alt="{{ post.title }}"><div class="text_on_photo"><h1>{{ last_post.title|truncatewords:20 }}</h1></a>
+        <a href="{{ last_post.get_absolute_url }}" alt="{{ post.title }}"><div class="text_on_photo"><h1>{{ last_post.title|truncatewords:20|title}}</h1></a>
     </div> {% endcomment %}
                   
             
@@ -31,14 +31,14 @@
         <a href="{{ second_post.get_absolute_url }}">
         <div class="first_photo">
                 <img src="{{ second_post.image.url }}">
-                <div class="text_on_1st"><h2>{{ second_post.title|truncatewords:20 }}</h2></div>
+                <div class="text_on_1st"><h2>{{ second_post.title|truncatewords:20|title }}</h2></div>
         </div>
         </a>
 
         <a href="{{ third_post.get_absolute_url }}">
         <div class="second_photo">               
              <img src="{{ third_post.image.url }}"></a>
-            <a href="{{ third_post.get_absolute_url }}"> <div class="text_on_2nd"><h2>{{ third_post.title|truncatewords:20 }}</h2></div>
+            <a href="{{ third_post.get_absolute_url }}"> <div class="text_on_2nd"><h2>{{ third_post.title|truncatewords:20|title }}</h2></div>
         </div>
         </a> 
         
@@ -53,14 +53,14 @@
         <a href="{{ most_commented_post.get_absolute_url }}">
         <div class="c1st_most_commented">
             <img src="{{ most_commented_post.image.url }}">
-            <div class="text_on_1st_most_commented"><h2>{{ most_commented_post.title|truncatewords:20 }}</h2></div>
+            <div class="text_on_1st_most_commented"><h2>{{ most_commented_post.title|truncatewords:20|title }}</h2></div>
         </div>
         </a>
 
         <a href="{{ second_most_commented_post.get_absolute_url }}"> 
         <div class="c2nd_most_commented">
             <img src="{{ second_most_commented_post.image.url }}">
-            <div class="text_on_2nd_most_commented"><h2>{{ second_most_commented_post.title|truncatewords:20 }}</h2></div>
+            <div class="text_on_2nd_most_commented"><h2>{{ second_most_commented_post.title|truncatewords:20|title }}</h2></div>
         </div>
         </a>
 

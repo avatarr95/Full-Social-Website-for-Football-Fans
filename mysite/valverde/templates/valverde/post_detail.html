@@ -9,7 +9,7 @@
         <div id="post_photo"><img width="750" height="470" src="{{ post.image.url }}"></div>
         
         <div id="post_detail">
-            <h1>{{ post.title }}</h1>
+            <h1>{{ post.title|title }}</h1>
             <i> Created by {{ post.author }} on {{ post.publish }} </i>
             <hr><br>
             <p id="post_detail_content">{{ post.body|safe }}</p><br>
