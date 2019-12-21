@@ -38,26 +38,30 @@ def get_4_to_24_last_posts():
 
 #MOST COMMENTED POSTS TAGS
 
+def getMostCommentedPosts(nr_of_days):
+    return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=nr_of_days)).annotate(total_comments=Count("comments")).order_by("-total_comments")
 
 @register.simple_tag
 def get_first_most_commented_post():
-    most_commented_post = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-total_comments").first()
-    most_commented_post_from_last_week = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=7)).annotate(total_comments=Count("comments")).order_by("-total_comments").first()
-    most_commented_post_from_last_month = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=30)).annotate(total_comments=Count("comments")).order_by("-total_comments").first()
-    if most_commented_post:
-        return most_commented_post
+    most_commented_posts = getMostCommentedPosts(1)
+    most_commented_posts_from_last_week = getMostCommentedPosts(7)
+    most_commented_posts_from_last_month = getMostCommentedPosts(31)
+
+    if most_commented_posts:
+        return most_commented_posts[0]
     else:
-        if most_commented_post_from_last_week:
-            return most_commented_post_from_last_week
+        if most_commented_posts_from_last_week:
+            return most_commented_posts_from_last_week[0]
         else:
-            return most_commented_post_from_last_month
+            return most_commented_posts_from_last_month[0]
 
 @register.simple_tag
 def get_second_most_commented_post():
+
+    most_commented_posts = getMostCommentedPosts(1)
+    most_commented_posts_from_last_week = getMostCommentedPosts(7)
+    most_commented_posts_from_last_month = getMostCommentedPosts(31)
     
-    most_commented_posts = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-total_comments")
-    most_commented_posts_from_last_week = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=7)).annotate(total_comments=Count("comments")).order_by("-total_comments")
-    most_commented_posts_from_last_month = Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=30)).annotate(total_comments=Count("comments")).order_by("-total_comments")
     if len(most_commented_posts) > 1:
         return most_commented_posts[1]
     else:
