@@ -26,7 +26,7 @@ SECRET_KEY = 'b0efb6e3ac93fb27dfa4e370fad91b0b0aa649d4393deaf043278fb88357041c16
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['134.209.201.165']
+ALLOWED_HOSTS = ['134.209.201.165', '127.0.0.1']
 
 
 # Application definition
@@ -144,11 +144,16 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 if DEBUG:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ValverdeSite',
+        'USER': 'postgres',
+        'PASSWORD': 'lorck1838',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
+}
+
 else:
     DATABASES = {
     'default': {
@@ -162,16 +167,6 @@ else:
 }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ValverdeSite',
-        'USER': 'postgres',
-        'PASSWORD': 'lorck1838',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 
 
 # Password validation
