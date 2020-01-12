@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b0efb6e3ac93fb27dfa4e370fad91b0b0aa649d4393deaf043278fb88357041c16952586bb7f2405f811d80c71aa0047909f84'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'YES')
 
-ALLOWED_HOSTS = ['134.209.201.165', '127.0.0.1']
+ALLOWED_HOSTS = ['142.93.236.141', '127.0.0.1']
 
 
 # Application definition
@@ -144,15 +144,16 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 if DEBUG:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ValverdeSite',
-        'USER': 'postgres',
-        'PASSWORD': 'lorck1838',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'ValverdeSite',
+            'USER': 'postgres',
+            'PASSWORD': 'lorck1838',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+        }
+
 
 else:
     DATABASES = {
@@ -164,7 +165,7 @@ else:
         'HOST': 'localhost',
         'PORT': '',
     }
-}
+    }
 
 
 
@@ -206,21 +207,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIR = os.path.join(BASE_DIR, 'static/')
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/') 
 MEDIA_URL = '/media/'
 
+
+LOGIN_URL = "valverde:login"
+LOGIN_REDIRECT_URL = "valverde:index"
+LOGOUT_URL = "valverde:logout"
 
 #IMPORTANT URLS 
 
 
-LOGIN_REDIRECT_URL = "valverde:index"
-LOGIN_URL = 'valverde:login'
-LOGOUT_URL = 'valverde:logout'
+# LOGIN_REDIRECT_URL = "valverde:index"
+# LOGIN_URL = 'valverde:login'
+# LOGOUT_URL = 'valverde:logout'
 
 
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'djangotestnoreply@gmail.com'
+EMAIL_HOST_PASSWORD = 'lorck1838'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 

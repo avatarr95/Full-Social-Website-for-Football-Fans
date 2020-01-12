@@ -6,6 +6,8 @@ import datetime
 from django.conf import settings
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
+from bs4 import BeautifulSoup
+import random
 
 # Create your models here.
 
@@ -22,8 +24,10 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default="published")
     slug = models.SlugField(max_length=50)
-    image = models.ImageField(upload_to="images/")
-    # users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="posts_liked", blank=True)
+    image = models.ImageField(upload_to="images/", blank=True)
+    description = models.CharField(max_length=160, default="", blank=True)
+    pic_nr = models.IntegerField(default=random.randint(1, 10), blank=True)
+    
 
     class Meta:
         ordering = ("-publish",)
@@ -38,7 +42,18 @@ class Post(models.Model):
     def was_published_recently(self):
         return timezone.now() - datetime.timedelta(days=1) <= self.publish <= timezone.now()
 
+    
+
     def save(self, *args, **kwargs):
+        pic_nr= self.pic_nr
+        if not self.image:
+            self.image = u'images/{}.jpg'.format(pic_nr)
+
+        html_text = self.body
+        soup = BeautifulSoup(html_text, features="lxml")
+        cleaned_text = soup.get_text(separator=" ")
+        self.description = cleaned_text[0:79]
+
         self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
 
@@ -50,10 +65,29 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     udpated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
-    # users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="comments_liked", blank=True)
+    description = models.CharField(max_length=50, default='', blank=True)
+    parent = models.ForeignKey("self", null=True, blank=True, on_delete=models.CASCADE)
+    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="comments_liked", blank=True)
 
     class Meta:
         ordering = ('-created',)
 
+    def children(self):
+        return Comment.objects.filter(parent=self)
+    
+    @property
+    def is_parent(self):
+        if self.parent is not None:
+            return False
+        return True
+
+    def save(self, *args, **kwargs):
+        html_text = self.body
+        soup = BeautifulSoup(html_text)
+        txt = soup.get_text()
+        self.description = txt[:49]
+        super(Comment, self).save(*args, **kwargs)
+    
     def __str__(self):
-        return self.post.title
+        return self.description
+    

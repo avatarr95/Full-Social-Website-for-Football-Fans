@@ -11,6 +11,14 @@ class CommentForm(forms.ModelForm):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.fields['body'].label = ''
         
+# class SubCommentForm(forms.ModelForm):
+#     class Meta:
+#         model = SubComment
+#         fields = ('body',)
+    
+#     def __init__(self, *args, **kwargs):
+#         super(SubCommentForm, self).__init__(*args, **kwargs)
+#         self.fields['body'].label = ''
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -18,7 +26,7 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ("first_name", "username", "email")
+        fields = ("username", "email")
 
     def __init__(self, *args, **kwargs): 
         super(RegisterForm, self).__init__(*args, **kwargs)

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
 {% block title %}Logowanie{% endblock title %}
 
@@ -13,12 +13,12 @@
         <h2> Login </h2><br>
 
     {% endif %}
-    <form action="{% url 'login' %}" method="post">
+    <form action="{% url 'valverde:login' %}" method="post">
         {{ form.as_p }}
         {% csrf_token %}
         <input type="hidden" name="next" value ="{{ next }}" />
         <p><input type="submit" value="Log in"></p>
     </form>
-    <p class="forgot_password"><a href="{% url 'password_reset' %}">Forgot your password? </p>
+    <p class="forgot_password"><a href="{% url 'valverde:password_reset' %}">Forgot your password? </p>
 </div>
 {% endblock content %}

@@ -1,12 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="message_success">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+            {% endif %}
+        
+    <form action="." method="post" style="text-align: center; margin-top: 20px; ">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <input type="submit" value="Submit a new post" style="margin-left: auto; margin-right: auto;">
 
-<form action="." method="post" style="text-align: center; margin-top: 20px;">
-    {% csrf_token %}
-    {{ form.media }}
-    {{ form.as_p }}
-    <input type="submit" value="Submit a new post" style="margin-left: auto; margin-right: auto;">
-
-</form>
+    </form>
+{% else %}
+    <div>
+        <p style="height: 200px; word-wrap: break:break-word"><br><br><br> Only registered users can add new posts. Please <a href="{% url 'valverde:login' %}">log in</a> or <a href="{% url 'valverde:register' %}">create an account</a>
+    </div>
+{% endif %}
 {% endblock %}

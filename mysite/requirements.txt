@@ -1,6 +1,5 @@
-dupa
-
 attrs==19.1.0
+beautifulsoup4==4.8.0
 certifi==2019.6.16
 chardet==3.0.4
 clarifai==2.6.2
