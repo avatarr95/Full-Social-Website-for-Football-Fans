@@ -8,7 +8,7 @@ class CommentForm(forms.ModelForm):
         fields = ('body',)
     
     def __init__(self, *args, **kwargs): 
-        super(CommentForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['body'].label = ''
         
 # class SubCommentForm(forms.ModelForm):
@@ -29,7 +29,7 @@ class RegisterForm(forms.ModelForm):
         fields = ("username", "email")
 
     def __init__(self, *args, **kwargs): 
-        super(RegisterForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['password2'].label = 'Repeat password'
 
     def clean_password2(self):

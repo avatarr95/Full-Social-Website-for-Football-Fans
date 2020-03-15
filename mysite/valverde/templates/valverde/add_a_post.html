@@ -1,4 +1,4 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 {% if user.is_authenticated %}
@@ -10,7 +10,7 @@
             {% endfor %}
             {% endif %}
         
-    <form action="." method="post" style="text-align: center; margin-top: 20px; ">
+    <form action="." method="post" style="color: white; text-align: center; margin-top: 20px; ">
         {% csrf_token %}
         {{ form.media }}
         {{ form.as_p }}

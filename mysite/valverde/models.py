@@ -36,14 +36,14 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        #return reverse("strona:post_detail", args=[self.publish.year, self.publish.strftime("%m"), self.publish.strftime("%d"), self.slug])
         return reverse("valverde:post_detail", args=[self.pk, self.slug])
 
     def was_published_recently(self):
         return timezone.now() - datetime.timedelta(days=1) <= self.publish <= timezone.now()
 
     
-
+    # While saving a post, we will add it's description (useful to display on main website, as BeautifulSoup cuts the html code from a post),
+    # and we will add it's slug based on the title with slugify.
     def save(self, *args, **kwargs):
         pic_nr= self.pic_nr
         if not self.image:
@@ -72,15 +72,18 @@ class Comment(models.Model):
     class Meta:
         ordering = ('-created',)
 
+    # Getting all the comments, that are not comment replies
     def children(self):
         return Comment.objects.filter(parent=self)
     
+    # Here we check, if we deal with a comment or a comment reply
     @property
     def is_parent(self):
         if self.parent is not None:
             return False
         return True
 
+    # While saving a comment, we will add it's description (useful to display on main website, as BeautifulSoup cuts the html code from a comment)
     def save(self, *args, **kwargs):
         html_text = self.body
         soup = BeautifulSoup(html_text)

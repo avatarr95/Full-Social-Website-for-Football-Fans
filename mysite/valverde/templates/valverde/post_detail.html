@@ -2,21 +2,59 @@
 {% load static %}
 {% load valverde_tags %}
 
-{% block content %}
 
-<div id="post_detail_and_ads">
-    <div id="post_detail_and_post_photo">
-        <div id="post_photo"><img width="750" height="470" src="{{ post.image.url }}"></div>
+<div class="wrapper_post_detail">
+    {% block grid %}
+    <div class="post_detail_grid">
+
+        <div class="post_photo box box_p1"><img width="750" height="470" src="{{ post.image.url }}"></div>
+        <br>
+    
+    
+
+    <!-- MOST COMMENTED POSTS -->
+            
+    {% get_first_most_commented_post as most_commented_post %}
+    {% get_second_most_commented_post as second_most_commented_post %}
+    
+        <div class="most_commented_posts_post_detail_text box">
+            <p class="text_post_detail">MOST COMMENTED</p>
+        </div>
+                
+        <div class="most_commented_1_post_detail box">
+            <a href="{{ most_commented_post.get_absolute_url }}">
+                
+                    <img src="{{ most_commented_post.image.url }}">
+                    <div class="text_on_1st text_on_photo"><h2>{{ most_commented_post.title|truncatechars:80|title }}</h2></div>
+                    <div class="comment_number"><i class="icon-fire"></i>{{ most_commented_post.comments.count }}</div>
+                
+            </a>
+        </div>
+
+                
+        <div class="most_commented_2_post_detail box">
+            <a href="{{ second_most_commented_post.get_absolute_url }}"> 
+                
+                    <img src="{{ second_most_commented_post.image.url }}">
+                    <div class="text_on_2nd text_on_photo"><h2>{{ second_most_commented_post.title|truncatechars:80|title }}</h2></div>
+                    <div class="comment_number"><i class="icon-fire"></i>{{ second_most_commented_post.comments.count }}</div>
+            </a>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    {% block content %}
         
         <div id="post_detail">
             <h1>{{ post.title|title }} {% if can_edit %}<a href="{{ edit_link }}">edit</a>{% endif%}</h1>
-            <i> Created by {{ post.author }} on {{ post.publish }} </i>
-            <hr><br>
+            <i> Created by {{ post.author }} on {{ post.publish|timesince }} </i>
+            <hr>
             <p id="post_detail_content">{{ post.body|safe }}</p><br>
              
         </div>
 
-        <div id="comments">
+ <div id="comments">
             
             <h2>COMMENTS</h2>
             <div class="add_comment">
@@ -108,23 +146,24 @@
             {% endfor %}
         </div>     
     
-    </div>
+    
 
-    <div id="post_detail_ads">
+    <!-- <div id="post_detail_ads">
         <div id="fs-upcoming"></div> <script> (function (w,d,s,o,f,js,fjs) { w['fsUpcomingEmbed']=o;w[o] = w[o] || function () { (w[o].q = w[o].q || []).push(arguments) }; js = d.createElement(s), fjs = d.getElementsByTagName(s)[0]; js.id = o; js.src = f; js.async = 1; fjs.parentNode.insertBefore(js, fjs); }(window, document, 'script', 'fsUpcoming', 'https://cdn.footystats.org/embeds/upcoming.js')); fsUpcoming('params', { teamID: 83 }); </script>
-    </div>
-</div>
+    </div> -->
 
 {% endblock %}
+</div>
 
 {% block scrpt %}
+
 
 ($(function() {
     $('.answer_to_comment').on("click", function() {
         var nr = $(this).attr("rel");
         $('.subcomment'+nr).slideToggle(500).addClass("active");
-    })
-}))
+    });
+}));
 
 
 {% endblock %}
@@ -163,3 +202,4 @@
     );
   });
 {% endblock %}
+

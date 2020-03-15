@@ -19,34 +19,41 @@ register = template.Library()
 
 #LAST POSTS TAGS
 
+# A function, which will return us the newest post.
+# Ex. get_post(0) will return us the newest post 
+def get_post(table_index):
+    return Post.objects.filter(status="published").order_by("-publish")[table_index]
+
 @register.simple_tag
 def get_last_post():
-    return Post.objects.filter(status="published").order_by("-publish")[0]
+    return get_post(0)
     
 @register.simple_tag
 def get_2nd_last_post():
-    return Post.objects.filter(status="published").order_by("-publish")[1]
+    return get_post(1)
 
 @register.simple_tag
 def get_3rd_last_post():
-    return Post.objects.filter(status="published").order_by("-publish")[2]
+    return get_post(2)
 
 @register.simple_tag
 def get_4_to_24_last_posts():
-    return Post.objects.filter(status="published").order_by('-publish')[1:24]
+    return Post.objects.filter(status="published").order_by("-publish")[1:24]
 
 
-#MOST COMMENTED POSTS TAGS
 
+#MOST COMMENTED POSTS
 def getMostCommentedPosts(nr_of_days):
     return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=nr_of_days)).annotate(total_comments=Count("comments")).order_by("-total_comments")
 
+
+# Useful variables to get most commented posts from last x days
+most_commented_posts = getMostCommentedPosts(1)
+most_commented_posts_from_last_week = getMostCommentedPosts(7)
+most_commented_posts_from_last_month = getMostCommentedPosts(31)
+
 @register.simple_tag
 def get_first_most_commented_post():
-    most_commented_posts = getMostCommentedPosts(1)
-    most_commented_posts_from_last_week = getMostCommentedPosts(7)
-    most_commented_posts_from_last_month = getMostCommentedPosts(31)
-
     if most_commented_posts:
         return most_commented_posts[0]
     else:
@@ -55,13 +62,9 @@ def get_first_most_commented_post():
         else:
             return most_commented_posts_from_last_month[0]
 
+# Could have been done with a function not to repeat the code, but we had to use the len method, otherwise it would not work
 @register.simple_tag
 def get_second_most_commented_post():
-
-    most_commented_posts = getMostCommentedPosts(1)
-    most_commented_posts_from_last_week = getMostCommentedPosts(7)
-    most_commented_posts_from_last_month = getMostCommentedPosts(31)
-    
     if len(most_commented_posts) > 1:
         return most_commented_posts[1]
     else:
@@ -72,18 +75,12 @@ def get_second_most_commented_post():
 
 
 
-
+# Getting 5 most commented posts
 @register.simple_tag
 def most_commented_posts(count=5):
     return Post.objects.filter(status="published", publish__lte=timezone.now(), publish__gte=timezone.now()-datetime.timedelta(days=1)).annotate(total_comments=Count("comments")).order_by("-total_comments")[:count]
 
 
-
-
-
-
-
-#markdown używamy, gdy jesteśmy pewni, że kod jest bezpieczny... lepiej nie ufać nikomu
 @register.filter(name="markdown")
 def markdown_format(text):
     return mark_safe(markdown.markdown(text))
