@@ -27,7 +27,7 @@ MeaningCloud-python==1.1.1
 numpy==1.17.2
 oauthlib==3.1.0
 pandas==0.25.1
-Pillow==6.2.1
+Pillow==8.2.0
 pipenv==2018.11.26
 plyer==1.4.0
 protobuf==3.9.1
